@@ -180,7 +180,7 @@ where
 
         let original_env = setup_environment(config)?;
 
-        let inner_provider = create(&factory_name, ModelConfig::new(config.model_name)?)?;
+        let inner_provider = create(&factory_name, ModelConfig::new(config.model_name)?).await?;
 
         let test_provider = Arc::new(TestProvider::new_recording(inner_provider, &file_path));
         (
@@ -203,7 +203,7 @@ where
             ExtensionConfig::Builtin {
                 name: "".to_string(),
                 display_name: None,
-                description: None,
+                description: "".to_string(),
                 timeout: None,
                 bundled: None,
                 available_tools: vec![],
